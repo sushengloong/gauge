@@ -21,6 +21,7 @@ $ ->
       b - a
 
   oTable = $('table#transactions_datatable').dataTable
+    sDom: '<"H"lr>t<"F"ip>'
     aoColumns: [null, null, null, {sType: "currency"}]
     bPaginate: false
     aaSorting: []
@@ -29,3 +30,10 @@ $ ->
 
   new FixedHeader oTable,
     offsetTop: 40
+
+  $("input#filter_text_field").keyup ->
+    oTable.fnFilter ''
+    oTable.fnFilter $(this).val()
+
+  $("input.datepicker").datepicker
+    dateFormat: "dd M yy"

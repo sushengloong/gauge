@@ -1,0 +1,8 @@
+<%= form_for transaction, class: "form-search" do |f| %>
+  <%= f.text_field :amount, placeholder: "amount" , class: "input-small" %>
+  <%= f.select :category_id, Category.all.collect{|c| [c.name, c.id]} %>
+  <%= f.text_field :note, placeholder: "note (optional)", class: "input-small" %>
+  <%= text_field_tag "transaction[trans_date]", ( transaction.trans_date.blank? ? Time.now.strftime("%d %b %Y") : transaction.trans_date.strftime("%d %b %Y") ), class: "input-small datepicker" %>
+  <%= f.select :repeat, Transaction.repeat_values %>
+  <%= f.submit "Add", class: "btn btn-primary" %>
+<% end %>

@@ -2,9 +2,39 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-form#import_transactions_form {
+div#transaction_import_form {
+  margin-bottom: 8px;
+}
+
+div#transaction_datatable_form {
+  float: left;
+}
+
+div#transaction_datatable_filter {
+  float: right;
+}
+form {
   margin: 0px;
   label {
     font-weight: bold;
   }
+  input {
+    margin-bottom: 0px !important;
+  }
+  select {
+    margin-bottom: 0px !important;
+  }
+}
+
+div#transaction_datatable_form form {
+  select {
+    width: 150px !important;
+  }
+  input.datepicker {
+    width: 70px;
+  }
+}
+
+div.ui-datepicker {
+  z-index: 999 !important;
 }

@@ -5,13 +5,25 @@ class Transaction < ActiveRecord::Base
 
   belongs_to :category
   
-  default_scope ->{ order('trans_date desc') }
+  default_scope ->{ order('trans_date desc, amount desc') }
 
   # repeat
   REPEAT_WEEKLY   = 'W'
   REPEAT_BIWEEKLY = 'B'
   REPEAT_MONTHLY  = 'M'
   REPEAT_NEVER    = 'N'
+
+  @@repeat_values = [
+    ['Never Repeat', REPEAT_NEVER],
+    ['Repeat Weekly', REPEAT_WEEKLY],
+    ['Repeat Biweekly', REPEAT_BIWEEKLY],
+    ['Repeat Monthly', REPEAT_MONTHLY]
+  ]
+  cattr_reader :repeat_values
+
+  validates :amount, presence: true, numericality: true
+  validates :category, presence: true
+  validates :trans_date, presence:true
 
   def trans_type
     self.category.blank? ? nil : self.category.category_type
