@@ -10,9 +10,9 @@ $ ->
       plotBorderWidth: null
       plotShadow: false
     title:
-      text: 'Browser market shares at a specific website, 2010'
+      text: 'Transaction Breakdown'
     tooltip:
-      pointFormat: 'Hello{series.name}: <b>{point.percentage}%</b>'
+      #pointFormat: '{series.name}: <b>{point.percentage}%</b>'
       percentageDecimals: 1
     plotOptions:
       pie:
@@ -22,25 +22,13 @@ $ ->
           enabled: true
           color: '#000000'
           connectorColor: '#000000'
-          formatter: ->
-            '101<b>'+ this.point.name +'</b>: '+ this.percentage +' %'
-      series:[
-        type: 'pie'
-        name: 'Browser share'
-        data: [
-          ['Firefox',   45.0],
-          ['IE',       26.8],
-          {
-              name: 'Chrome',
-              y: 12.8,
-              sliced: true,
-              selected: true
-          },
-          ['Safari',    8.5],
-          ['Opera',     6.2],
-          ['Others',   0.7]
-        ]
-      ]
+          #formatter: ->
+          #  '<b>'+ this.point.name +'</b>: '+ this.percentage +' %'
+    series:[
+      type: 'pie'
+      name: 'Transaction Breakdown'
+      data: transactions_chart_data
+    ]
 
   $.extend $.fn.dataTableExt.oSort,
     "currency-pre": (a) ->

@@ -68,4 +68,12 @@ class Transaction < ActiveRecord::Base
 
     ret
   end
+
+  def self.breakdown_chart_data(trans_a)
+    trans_a = trans_a.group_by(&:category)
+    trans_a = trans_a.map do |category, trans|
+      "['#{category.name}', #{trans.length}]"
+    end
+    "[#{trans_a.join(',')}]".html_safe
+  end
 end
