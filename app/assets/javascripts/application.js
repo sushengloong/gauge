@@ -19,4 +19,6 @@
 //= require bootstrap-dropdown
 //= require dataTables/jquery.dataTables
 //= require dataTables/extras/FixedHeader
+//= require highcharts
+//= require highcharts/modules/exporting
 //= require_tree .
