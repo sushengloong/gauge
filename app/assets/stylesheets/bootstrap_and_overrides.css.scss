@@ -31,15 +31,36 @@ body { padding-top: 60px; }
 @import "bootswatch/united/bootswatch";
 
 // override datatable styling
-table.table thead {
-  color: white;
-  background-color: #802c59;
-  background-image: -moz-linear-gradient(top, #862e5e, #772953);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#862e5e), to(#772953));
-  background-image: -webkit-linear-gradient(top, #862e5e, #772953);
-  background-image: -o-linear-gradient(top, #862e5e, #772953);
-  background-image: linear-gradient(to bottom, #862e5e, #772953);
-  background-repeat: repeat-x;
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff862e5e', endColorstr='#ff772953', GradientType=0);
-  border-color: #642246;
+table.table {
+  thead {
+    color: white;
+    background-color: #802c59;
+    background-image: -moz-linear-gradient(top, #862e5e, #772953);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#862e5e), to(#772953));
+    background-image: -webkit-linear-gradient(top, #862e5e, #772953);
+    background-image: -o-linear-gradient(top, #862e5e, #772953);
+    background-image: linear-gradient(to bottom, #862e5e, #772953);
+    background-repeat: repeat-x;
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff862e5e', endColorstr='#ff772953', GradientType=0);
+    border-color: #642246;
+  }
+
+  tbody tr:hover {
+    cursor: pointer;
+    *cursor: hand;
+    
+    // this is not DRY but forced to override the specific class
+    td {
+      background-color: $tableBackgroundHover !important;
+    }
+    td.sorting_1 {
+      background-color: $tableBackgroundHover !important;
+    }
+    td.sorting_2 {
+      background-color: $tableBackgroundHover !important;
+    }
+    td.sorting_3 {
+      background-color: $tableBackgroundHover !important;
+    }
+  }
 }
