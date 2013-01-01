@@ -1,0 +1,45 @@
+// First import journal variables
+@import "bootswatch/united/variables";
+
+// Might be a bug. Potential pull request
+$warningText:             #ECA918;
+$warningBackground:       lighten($warningText, 40%);
+$warningBorder:           darken(adjust-hue($warningBackground, -10), 30%);
+
+$errorText:               #DF382C;
+$errorBackground:         lighten($errorText, 40%);
+$errorBorder:             darken(adjust-hue($errorBackground, -10), 30%);
+
+$successText:             #38B44A;
+$successBackground:       lighten($successText, 40%);
+$successBorder:           darken(adjust-hue($successBackground, -10), 50%);
+
+$infoText:                $purple;
+$infoBackground:          lighten($purple, 50%);
+$infoBorder:              darken(adjust-hue($infoBackground, -10), 70%);
+
+// Then bootstrap itself
+@import "bootstrap";
+
+// Bootstrap body padding for fixed navbar
+body { padding-top: 60px; }
+
+// Responsive styles go here in case you want them
+@import "bootstrap-responsive";
+
+// And finally bootswatch style itself
+@import "bootswatch/united/bootswatch";
+
+// override datatable styling
+table.table thead {
+  color: white;
+  background-color: #802c59;
+  background-image: -moz-linear-gradient(top, #862e5e, #772953);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#862e5e), to(#772953));
+  background-image: -webkit-linear-gradient(top, #862e5e, #772953);
+  background-image: -o-linear-gradient(top, #862e5e, #772953);
+  background-image: linear-gradient(to bottom, #862e5e, #772953);
+  background-repeat: repeat-x;
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff862e5e', endColorstr='#ff772953', GradientType=0);
+  border-color: #642246;
+}
