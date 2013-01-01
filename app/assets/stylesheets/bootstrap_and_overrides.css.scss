@@ -48,19 +48,21 @@ table.table {
   tbody tr:hover {
     cursor: pointer;
     *cursor: hand;
+
+    $bg_color: lighten(orange, 45%);
     
     // this is not DRY but forced to override the specific class
     td {
-      background-color: $tableBackgroundHover !important;
+      background-color: $bg_color !important;
     }
     td.sorting_1 {
-      background-color: $tableBackgroundHover !important;
+      background-color: $bg_color !important;
     }
     td.sorting_2 {
-      background-color: $tableBackgroundHover !important;
+      background-color: $bg_color !important;
     }
     td.sorting_3 {
-      background-color: $tableBackgroundHover !important;
+      background-color: $bg_color !important;
     }
   }
 }
