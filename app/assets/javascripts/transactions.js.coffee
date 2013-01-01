@@ -12,8 +12,8 @@ $ ->
     title:
       text: 'Transaction Breakdown'
     tooltip:
-      #pointFormat: '{series.name}: <b>{point.percentage}%</b>'
-      percentageDecimals: 1
+      pointFormat: '{series.name}: <b>{point.y} ({point.percentage}%)</b>'
+      percentageDecimals: 2
     plotOptions:
       pie:
         allowPointSelect: true
@@ -22,8 +22,8 @@ $ ->
           enabled: true
           color: '#000000'
           connectorColor: '#000000'
-          #formatter: ->
-          #  '<b>'+ this.point.name +'</b>: '+ this.percentage +' %'
+          formatter: ->
+            '<b>' + this.point.name + '</b>: ' + this.point.y + ' (' + Highcharts.numberFormat(this.point.percentage, 2) + ' %)'
     series:[
       type: 'pie'
       name: 'Transaction Breakdown'
