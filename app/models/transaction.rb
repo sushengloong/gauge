@@ -70,9 +70,10 @@ class Transaction < ActiveRecord::Base
   end
 
   def self.breakdown_chart_data(trans_a)
-    trans_a = trans_a.group_by(&:category)
+    trans_a = trans_a.group_by(&:category).sort
     trans_a = trans_a.map do |category, trans|
-      "['#{category.name}', #{trans.length}]"
+      sum = trans.map(&:amount).select{|a| a.present?}.inject(&:+)
+      "['#{category.name}', #{sum}]"
     end
     "[#{trans_a.join(',')}]".html_safe
   end

@@ -12,7 +12,7 @@ $ ->
     title:
       text: 'Transaction Breakdown'
     tooltip:
-      pointFormat: '{series.name}: <b>{point.y} ({point.percentage}%)</b>'
+      pointFormat: '{series.name}: <b>${point.y} ({point.percentage}%)</b>'
       percentageDecimals: 2
     plotOptions:
       pie:
@@ -23,12 +23,14 @@ $ ->
           color: '#000000'
           connectorColor: '#000000'
           formatter: ->
-            '<b>' + this.point.name + '</b>: ' + this.point.y + ' (' + Highcharts.numberFormat(this.point.percentage, 2) + ' %)'
+            '<b>' + this.point.name + '</b>: $' + Highcharts.numberFormat(this.point.y, 2) \
+              + ' (' + Highcharts.numberFormat(this.point.percentage, 2) + ' %)'
     series:[
       type: 'pie'
       name: 'Transaction Breakdown'
       data: transactions_chart_data
     ]
+    colors: ['#AA4643', '#50B432']
 
   $.extend $.fn.dataTableExt.oSort,
     "currency-pre": (a) ->
