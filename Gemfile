@@ -26,7 +26,7 @@ end
 
 gem 'jquery-rails'
 gem 'awesome_print'
-gem "highcharts-rails", "~> 2.3.0"
+gem 'highcharts-rails', '~> 2.3.0'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
