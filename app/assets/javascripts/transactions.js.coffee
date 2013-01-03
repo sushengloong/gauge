@@ -3,9 +3,9 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  trans_pie_chart = new Highcharts.Chart
+  breakdown_pie_chart = new Highcharts.Chart
     chart:
-      renderTo: 'chart-container'
+      renderTo: 'breakdown-chart-container'
       plotBackgroundColor: null
       plotBorderWidth: null
       plotShadow: false
@@ -66,3 +66,32 @@ $ ->
 
   $("input.datepicker").datepicker
     dateFormat: "dd M yy"
+
+  income_bar_chart = new Highcharts.Chart
+    chart:
+      renderTo: 'income-chart-container'
+    title:
+      text: 'Income-Expenses Chart'
+    xAxis:
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May']
+    tooltip:
+      formatter: ->
+        '' + this.series.name + ': ' + this.y + ''
+    plotOptions:
+      column:
+        stacking: 'normal'
+    series: [
+      name: 'Income'
+      type: 'column'
+      data: [3000, 3500, 3200, 4800, 3000]
+      stack: 0
+    ,
+      name: 'Expenses'
+      type: 'column'
+      data: [-1000, -4000, -1300, -1800, -1200]
+      stack: 0
+    ,
+      name: 'Net Income'
+      type: 'line'
+      data: [2000, -500, 1900, 3000, 1800]
+    ]
