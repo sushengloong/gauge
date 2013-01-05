@@ -30,6 +30,7 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     awesome_print (1.1.0)
+    bcrypt-ruby (3.0.1)
     bootstrap-sass (2.2.2.0)
       sass (~> 3.2)
     bootswatch-rails (0.2.0)
@@ -117,6 +118,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  bcrypt-ruby (~> 3.0.0)
   bootstrap-sass (~> 2.2.2.0)
   bootswatch-rails
   coffee-rails (~> 3.2.1)

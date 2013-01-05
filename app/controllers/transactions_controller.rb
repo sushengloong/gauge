@@ -10,7 +10,7 @@ class TransactionsController < ApplicationController
       redirect_to(:back, flash: { notice: "Transaction added successfully" }) and return
     else
       @transactions = Transaction.all
-      flash[:error] = "Failed to add transaction. #{@transaction.errors.full_messages.join('. ')}"
+      flash.now.alert = "Failed to add transaction. #{@transaction.errors.full_messages.join('. ')}"
       render :index
     end
   end

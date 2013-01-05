@@ -1,4 +1,7 @@
 Gauge::Application.routes.draw do
+  resources :sessions
+  resources :users
+
   resources :transactions do
     post :import, :on => :collection
   end
