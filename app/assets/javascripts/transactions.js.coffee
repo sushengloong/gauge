@@ -42,7 +42,7 @@ $ ->
     chart:
       renderTo: 'trend-chart-container'
     title:
-      text: 'Transaction Trend Chart'
+      text: 'Transaction Trend'
     xAxis:
       categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May']
     tooltip:
