@@ -3,34 +3,69 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  breakdown_pie_chart = new Highcharts.Chart
+
+  trend_chart = breakdown_chart = null
+
+  $('a[data-toggle="tab"]').on 'shown', (e)->
+    # lazy-loading other charts
+    if $(this).attr('href') == '#breakdown-chart-container-pane' && (typeof(breakdown_chart) == 'undefined' || breakdown_chart == null)
+      breakdown_chart = new Highcharts.Chart
+        chart:
+          renderTo: 'breakdown-chart-container'
+          plotBackgroundColor: null
+          plotBorderWidth: null
+          plotShadow: false
+        title:
+          text: 'Transaction Breakdown'
+        tooltip:
+          pointFormat: '{series.name}: <b>${point.y} ({point.percentage}%)</b>'
+          percentageDecimals: 2
+        plotOptions:
+          pie:
+            allowPointSelect: true
+            cursor: 'pointer'
+            dataLabels:
+              enabled: true
+              color: '#000000'
+              connectorColor: '#000000'
+              formatter: ->
+                '<b>' + this.point.name + '</b>: $' + Highcharts.numberFormat(this.point.y, 2) \
+                  + ' (' + Highcharts.numberFormat(this.point.percentage, 2) + ' %)'
+        series:[
+          type: 'pie'
+          name: 'Transaction Breakdown'
+          data: transactions_chart_data
+        ]
+        colors: ['#AA4643', '#50B432']
+
+  trend_chart = new Highcharts.Chart
     chart:
-      renderTo: 'breakdown-chart-container'
-      plotBackgroundColor: null
-      plotBorderWidth: null
-      plotShadow: false
+      renderTo: 'trend-chart-container'
     title:
-      text: 'Transaction Breakdown'
+      text: 'Transaction Trend Chart'
+    xAxis:
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May']
     tooltip:
-      pointFormat: '{series.name}: <b>${point.y} ({point.percentage}%)</b>'
-      percentageDecimals: 2
+      formatter: ->
+        '' + this.series.name + ': ' + this.y + ''
     plotOptions:
-      pie:
-        allowPointSelect: true
-        cursor: 'pointer'
-        dataLabels:
-          enabled: true
-          color: '#000000'
-          connectorColor: '#000000'
-          formatter: ->
-            '<b>' + this.point.name + '</b>: $' + Highcharts.numberFormat(this.point.y, 2) \
-              + ' (' + Highcharts.numberFormat(this.point.percentage, 2) + ' %)'
-    series:[
-      type: 'pie'
-      name: 'Transaction Breakdown'
-      data: transactions_chart_data
+      column:
+        stacking: 'normal'
+    series: [
+      name: 'Income'
+      type: 'column'
+      data: [3000, 3500, 3200, 4800, 3000]
+      stack: 0
+    ,
+      name: 'Expenses'
+      type: 'column'
+      data: [-1000, -4000, -1300, -1800, -1200]
+      stack: 0
+    ,
+      name: 'Net Income'
+      type: 'line'
+      data: [2000, -500, 1900, 3000, 1800]
     ]
-    colors: ['#AA4643', '#50B432']
 
   $.extend $.fn.dataTableExt.oSort,
     "currency-pre": (a) ->
@@ -66,32 +101,3 @@ $ ->
 
   $("input.datepicker").datepicker
     dateFormat: "dd M yy"
-
-  income_bar_chart = new Highcharts.Chart
-    chart:
-      renderTo: 'income-chart-container'
-    title:
-      text: 'Income-Expenses Chart'
-    xAxis:
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May']
-    tooltip:
-      formatter: ->
-        '' + this.series.name + ': ' + this.y + ''
-    plotOptions:
-      column:
-        stacking: 'normal'
-    series: [
-      name: 'Income'
-      type: 'column'
-      data: [3000, 3500, 3200, 4800, 3000]
-      stack: 0
-    ,
-      name: 'Expenses'
-      type: 'column'
-      data: [-1000, -4000, -1300, -1800, -1200]
-      stack: 0
-    ,
-      name: 'Net Income'
-      type: 'line'
-      data: [2000, -500, 1900, 3000, 1800]
-    ]
