@@ -1,9 +1,13 @@
-<%= link_to "Home", root_path, :class => 'brand' %>
+<%= link_to 'Home', root_path, :class => 'brand' %>
 <ul class="nav">
-  <li>
-  <%= link_to('Login', root_path)  %>
-  </li>
-  <li>
-  <%= link_to('Sign up', root_path)  %>
-  </li>
+  <li><%= link_to('About Gauge', root_path) %></li>
+  <li><%= link_to('Transactions', root_path) %></li>
 </ul>
+<ul class="nav pull-right">
+  <li><%= link_to('Sign Up', root_path) %></li>
+</ul>
+<form class="navbar-form pull-right">
+  <input class="span2" type="text" placeholder="Email">
+  <input class="span2" type="password" placeholder="Password">
+  <button type="submit" class="btn btn-info">Login</button>
+</form>
