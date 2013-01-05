@@ -43,6 +43,9 @@ $ ->
       renderTo: 'trend-chart-container'
     title:
       text: 'Transaction Trend'
+    yAxis:
+      title:
+        text: ''
     xAxis:
       categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May']
     tooltip:
@@ -101,3 +104,12 @@ $ ->
 
   $("input.datepicker").datepicker
     dateFormat: "dd M yy"
+
+  $(window).scroll ->
+    console.log $(this).scrollTop()+40
+    console.log $("#transactions_datatable").offset().top
+    console.log("-----")
+    if ($(this).scrollTop()+40) >= $("#transactions_datatable").offset().top
+      $("#fixed-footer").show()
+    else
+      $("#fixed-footer").hide()
