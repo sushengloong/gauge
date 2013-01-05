@@ -106,10 +106,13 @@ $ ->
     dateFormat: "dd M yy"
 
   $(window).scroll ->
-    console.log $(this).scrollTop()+40
-    console.log $("#transactions_datatable").offset().top
-    console.log("-----")
     if ($(this).scrollTop()+40) >= $("#transactions_datatable").offset().top
-      $("#fixed-footer").show()
+      $("#fixed-footer").slideDown("fast")
     else
-      $("#fixed-footer").hide()
+      $("#fixed-footer").slideUp("fast")
+
+  $('.scrollup').click (e)->
+    e.preventDefault
+    $("body").animate
+      scrollTop: 0
+    , 600

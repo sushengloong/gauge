@@ -26,7 +26,7 @@
   var transactions_chart_data = <%= Transaction.breakdown_chart_data(@transactions) %>;
 </script>
 
-<div id="transaction_datatable_form">
+<div class="transaction_datatable_form">
   <%= render partial: 'form', locals: {transaction: @transaction} %>
 </div>
 
@@ -55,9 +55,13 @@
   </tbody>
 </table>
 
-<div id="fixed-footer" class="navbar navbar-fixed-bottom">
+<div id="fixed-footer" class="navbar navbar-fixed-bottom" style="display:none">
   <div class="navbar-inner">
-    <div class="container" style="width: auto; padding: 0 20px;">
+    <div class="container">
+      <div class="transaction_datatable_form">
+        <%= render partial: 'form', locals: {transaction: @transaction} %>
+        <a class="scrollup" href="#">&nbsp;</a>
+      </div>
     </div>
   </div>
 </div>

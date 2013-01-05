@@ -12,7 +12,7 @@ div#transaction_import_form {
   margin-bottom: 8px;
 }
 
-div#transaction_datatable_form {
+div.transaction_datatable_form {
   float: left;
 }
 
@@ -32,7 +32,7 @@ form {
   }
 }
 
-div#transaction_datatable_form form {
+div.transaction_datatable_form form {
   select {
     width: 150px !important;
   }
@@ -43,4 +43,23 @@ div#transaction_datatable_form form {
 
 div.ui-datepicker {
   z-index: 999 !important;
+}
+
+.navbar-inner .container {
+  margin: 0px auto;
+  .transaction_datatable_form {
+    float: none;
+    form {
+      display: inline;
+    }
+    .scrollup {
+      float: right;
+      background: image-url("icon_gototop.png") no-repeat scroll 0 0 transparent;
+      position: fixed;
+      text-indent: -9999px;
+      height: 40px;
+      width: 40px;
+      right: 130px;
+    }
+  }
 }
