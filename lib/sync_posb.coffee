@@ -56,6 +56,7 @@ casper.then ->
   # this.log 'JSON: ' + JSON.stringify(inputs)
 
   resp = this.base64encode inputs['action'], 'POST', inputs
-  this.log window.atob(resp)
+  fs = require 'fs'
+  fs.write 'posb.csv', window.atob(resp), 'w'
 
 casper.run()
