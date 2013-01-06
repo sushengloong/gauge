@@ -39,23 +39,23 @@ casper.then ->
   #   $('form[name="DownLoadTransactionHistoryForm"] input').length
   inputs = this.evaluate ->
     inputs = {}
-    inputs['action'] = $('form[name="DownLoadTransactionHistoryForm"]').attr('action')
+    inputs['action'] = $('form[name="DownLoadTransactionHistoryForm"]:first').attr('action')
     $('form[name="DownLoadTransactionHistoryForm"] input').each ->
       inputs[$(this).attr('name')] = $(this).val()
     # downLoadTransaction begins
-    inputs['TXN_DATES'] = txnDates
+    inputs['TXN_DATES'] = txnDates.join(',')
     #inputs['TXN_VALUE_DATES'] = '1'
-    inputs['TXN_CODES'] = txnCodes
-    inputs['TXN_REFERENCE_NUMBER1'] = txnReferencesNumber1
-    inputs['TXN_REFERENCE_NUMBER2'] = txnReferencesNumber
-    inputs['TXN_REFERENCE_NUMBER3'] = txnReferencesNumber3
-    inputs['TXN_DEBITS'] = txnDebits
-    inputs['TXN_CREDITS'] = txnCredits
+    inputs['TXN_CODES'] = txnCodes.join(',')
+    inputs['TXN_REFERENCE_NUMBER1'] = txnReferencesNumber1.join(',')
+    inputs['TXN_REFERENCE_NUMBER2'] = txnReferencesNumber2.join(',')
+    inputs['TXN_REFERENCE_NUMBER3'] = txnReferencesNumber3.join(',')
+    inputs['TXN_DEBITS'] = txnDebits.join(',')
+    inputs['TXN_CREDITS'] = txnCredits.join(',')
     # downLoadTransaction ends
     inputs
-  this.log JSON.stringify(inputs)
+  # this.log 'JSON: ' + JSON.stringify(inputs)
 
   resp = this.base64encode inputs['action'], 'POST', inputs
-  this.log resp
+  this.log window.atob(resp)
 
 casper.run()
