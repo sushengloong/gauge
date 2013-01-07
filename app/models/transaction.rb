@@ -3,6 +3,7 @@ require 'csv'
 class Transaction < ActiveRecord::Base
   attr_accessible :amount, :category_id, :note, :repeat, :trans_date
 
+  belongs_to :user
   belongs_to :category
   
   default_scope ->{ order('trans_date desc, amount desc') }
@@ -23,7 +24,8 @@ class Transaction < ActiveRecord::Base
 
   validates :amount, presence: true, numericality: true
   validates :category, presence: true
-  validates :trans_date, presence:true
+  validates :trans_date, presence: true
+  validates :user, presence: true
 
   def trans_type
     self.category.blank? ? nil : self.category.category_type
@@ -51,22 +53,15 @@ class Transaction < ActiveRecord::Base
     nil
   end
 
-  def self.import_csv(file, save=true)
-    ret = 0
+  def self.parse_csv(file)
     file = File.new(file, 'r') if file.is_a? String
     arr = []
     CSV.foreach(file.path) do |row|
       row.map! { |r| r.nil? ? r : r.chomp.strip.gsub(/\s+/, ' ') }
       trans = self.initialize_from_csv_row(row)
-      arr << trans if trans && trans.valid?
+      arr << trans if trans
     end
-
-    self.transaction do 
-      arr.each(&:save!)
-      ret = arr.count
-    end if save
-
-    ret
+    arr
   end
 
   def self.breakdown_chart_data(trans_a)

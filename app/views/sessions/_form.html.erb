@@ -1,6 +1,6 @@
 <%= form_tag sessions_path, class: "form-horizontal" do %>
   <fieldset>
-    <legend>Please fill out and submit the form below</legend>
+    <legend>Login</legend>
     <% if user.errors.any? %>
       <div class="error_messages">
         <h2>Form is invalid</h2>
@@ -12,13 +12,13 @@
       </div>
     <% end %>
     <div class="control-group">
-      <%= label_tag :email %><br />
+      <%= label_tag :email %>
       <%= text_field_tag :email, params[:email] %>
     </div>
     <div class="control-group">
-      <%= label_tag :password %><br />
+      <%= label_tag :password %>
       <%= password_field_tag :password %>
     </div>
-    <div class="form-actions"><%= submit_tag "Log In" %>
+    <div class="form-actions"><%= submit_tag "Log In", class: "btn btn-primary" %>
   </fieldset>
 <% end %>
