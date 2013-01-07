@@ -1,5 +1,6 @@
 // First import journal variables
-@import "bootswatch/united/variables";
+//@import "bootswatch/united/variables";
+@import "bootswatch/cerulean/variables";
 
 // Might be a bug. Potential pull request
 $warningText:             #ECA918;
@@ -28,7 +29,8 @@ body { padding-top: 60px; }
 @import "bootstrap-responsive";
 
 // And finally bootswatch style itself
-@import "bootswatch/united/bootswatch";
+//@import "bootswatch/united/bootswatch";
+@import "bootswatch/cerulean/bootswatch";
 
 // override field error styling
 .field_with_errors {
@@ -40,12 +42,18 @@ body { padding-top: 60px; }
 table.table {
   thead {
     color: white;
-    background-color: #802c59;
-    background-image: -moz-linear-gradient(top, #862e5e, #772953);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#862e5e), to(#772953));
-    background-image: -webkit-linear-gradient(top, #862e5e, #772953);
-    background-image: -o-linear-gradient(top, #862e5e, #772953);
-    background-image: linear-gradient(to bottom, #862e5e, #772953);
+    // background-color: #802c59;
+    // background-image: -moz-linear-gradient(top, #862e5e, #772953);
+    // background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#862e5e), to(#772953));
+    // background-image: -webkit-linear-gradient(top, #862e5e, #772953);
+    // background-image: -o-linear-gradient(top, #862e5e, #772953);
+    // background-image: linear-gradient(to bottom, #862e5e, #772953);
+    background-color: #034482;
+    background-image: -moz-linear-gradient(top, #04498C, #033C73);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#04498C), to(#033C73));
+    background-image: -webkit-linear-gradient(top, #04498C, #033C73);
+    background-image: -o-linear-gradient(top, #04498C, #033C73);
+    background-image: linear-gradient(to bottom, #04498C, #033C73);
     background-repeat: repeat-x;
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff862e5e', endColorstr='#ff772953', GradientType=0);
     border-color: #642246;
