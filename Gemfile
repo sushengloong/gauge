@@ -24,10 +24,14 @@ group :assets do
   gem 'jquery-datatables-rails'
 end
 
+group :development do
+  gem 'quiet_assets'
+  gem 'thin'
+end
+
 gem 'jquery-rails'
 gem 'awesome_print'
 gem 'highcharts-rails', '~> 2.3.0'
-gem 'quiet_assets', group: :development
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
