@@ -42,12 +42,12 @@ $ ->
     chart:
       renderTo: 'trend-chart-container'
     title:
-      text: 'Transaction Trend'
+      text: 'Transaction Trends'
     yAxis:
       title:
         text: ''
     xAxis:
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May']
+      categories: past_transaction_trends["months"]
     tooltip:
       formatter: ->
         '' + this.series.name + ': ' + this.y + ''
@@ -57,17 +57,17 @@ $ ->
     series: [
       name: 'Income'
       type: 'column'
-      data: [3000, 3500, 3200, 4800, 3000]
+      data: past_transaction_trends["income"]
       stack: 0
     ,
       name: 'Expenses'
       type: 'column'
-      data: [-1000, -4000, -1300, -1800, -1200]
+      data: past_transaction_trends["expenses"]
       stack: 0
     ,
       name: 'Net Income'
       type: 'line'
-      data: [2000, -500, 1900, 3000, 1800]
+      data: past_transaction_trends["net_income"]
     ]
 
   $.extend $.fn.dataTableExt.oSort,

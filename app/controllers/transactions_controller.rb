@@ -3,7 +3,7 @@ class TransactionsController < ApplicationController
 
   def index
     @transaction = Transaction.new
-    @transactions = current_user.transactions
+    @transactions = current_user.transactions.includes(:category)
   end
 
   def create
@@ -12,7 +12,7 @@ class TransactionsController < ApplicationController
     if @transaction.save
       redirect_to(:back, flash: { notice: "Transaction added successfully" }) and return
     else
-      @transactions = current_user.transactions
+      @transactions = current_user.transactions.includes(:category)
       flash.now.alert = "Failed to add transaction. #{@transaction.errors.full_messages.join('. ')}"
       render :index
     end

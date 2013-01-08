@@ -15,4 +15,35 @@ class User < ActiveRecord::Base
     transactions.each(&:save!)
     transactions
   end
+
+  def past_transaction_trends(num = 6)
+    today = Date.today
+    start_date = today.beginning_of_month - num.months
+    transactions = self.transactions.includes(:category).where(:trans_date => start_date.beginning_of_day..today.end_of_day)
+    transactions = Hash[transactions.group_by{ |t| t.trans_date.beginning_of_month }.sort]
+    data = { months: [], income:[], expenses:[], net_income:[] }
+    transactions.each do |month, trans|
+      income = trans.select{ |t| t.category.category_type == Category::TYPE_INCOME }.inject(0){ |sum, t| sum + t.amount }
+      expenses = trans.select{ |t| t.category.category_type == Category::TYPE_EXPENSE }.inject(0){ |sum, t| sum - t.amount }
+      data[:months] << month.strftime("%b")
+      data[:income] << income
+      data[:expenses] << expenses
+      data[:net_income] << (income + expenses) # expenses value is negative
+    end
+    data
+  end
+
+  # def past_transaction_trends(num = 6)
+  #   today = Date.today
+  #   start_date = today.beginning_of_month - num.months
+  #   transactions = self.transactions.includes(:category).where(:trans_date => start_date.beginning_of_day..today.end_of_day)
+  #   transactions = Hash[transactions.group_by{ |t| t.trans_date.beginning_of_month }.sort]
+  #   data = {}
+  #   transactions.each do |month, trans|
+  #     income = trans.select{ |t| t.category.category_type == Category::TYPE_INCOME }.inject(0){ |sum, t| sum + t.amount }
+  #     expenses = trans.select{ |t| t.category.category_type == Category::TYPE_EXPENSE }.inject(0){ |sum, t| sum + t.amount }
+  #     data[month.strftime("%b")] = { :income => income, :expenses => expenses, :net_income => (income - expenses) }
+  #   end
+  #   data
+  # end
 end

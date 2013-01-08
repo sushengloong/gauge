@@ -2,7 +2,7 @@
 
 <div class="chart-panel">
   <ul class="nav nav-tabs">
-    <li class="active"><a href="#trend-chart-container-pane" data-toggle="tab">Trend</a></li>
+    <li class="active"><a href="#trend-chart-container-pane" data-toggle="tab">Trends</a></li>
     <li><a href="#breakdown-chart-container-pane" data-toggle="tab">Breakdown</a></li>
   </ul>
   <div class="tab-content">
@@ -64,3 +64,10 @@
     </div>
   </div>
 </div>
+
+<script>
+  var past_transaction_trends = <%= current_user.past_transaction_trends.to_json.html_safe %>;
+  past_transaction_trends["income"] = $.map(past_transaction_trends['income'], function(e,i) {return parseFloat(e);})
+  past_transaction_trends["expenses"] = $.map(past_transaction_trends['expenses'], function(e,i) {return parseFloat(e);})
+  past_transaction_trends["net_income"] = $.map(past_transaction_trends['net_income'], function(e,i) {return parseFloat(e);})
+</script>

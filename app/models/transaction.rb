@@ -14,13 +14,13 @@ class Transaction < ActiveRecord::Base
   REPEAT_MONTHLY  = 'M'
   REPEAT_NEVER    = 'N'
 
-  @@repeat_values = [
+  @repeat_values = [
     ['Never Repeat', REPEAT_NEVER],
     ['Repeat Weekly', REPEAT_WEEKLY],
     ['Repeat Biweekly', REPEAT_BIWEEKLY],
     ['Repeat Monthly', REPEAT_MONTHLY]
   ]
-  cattr_reader :repeat_values
+  def self.repeat_values; @repeat_values end
 
   validates :amount, presence: true, numericality: true
   validates :category, presence: true
