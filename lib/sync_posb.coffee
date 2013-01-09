@@ -9,10 +9,16 @@ casper.on 'remote.message', (msg)->
 casper.start 'https://internet-banking.dbs.com.sg/posb', ->
   this.log 'URL: ' + this.getCurrentUrl()
 
-casper.thenEvaluate ->
-  document.querySelector('#UID').value = ''
-  document.querySelector('#PIN').value = ''
-  document.querySelector('input[value="Submit"]').click()
+casper.then ->
+  uid = this.cli.get(0)
+  pin = this.cli.get(1)
+  this.evaluate ->
+    document.querySelector('#UID').value = uid
+    document.querySelector('#PIN').value = pin
+    document.querySelector('input[value="Submit"]').click()
+  ,
+    uid: uid
+    pin: pin
   
 casper.then ->
   #this.log 'Last login: ' + this.evaluate ->
@@ -27,9 +33,12 @@ casper.then ->
 casper.then ->
   this.page.switchToChildFrame(0)
   this.page.switchToChildFrame(3)
+  otp = this.cli.get(2)
   this.evaluate ->
-    document.querySelector('input[name="OTPToken"]').value = ''
+    document.querySelector('input[name="OTPToken"]').value = otp
     document.querySelector('input[name="submitButton"]').click()
+  ,
+    otp: otp
 
 casper.then ->
   this.page.switchToChildFrame(0)
