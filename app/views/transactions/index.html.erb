@@ -14,19 +14,28 @@
     </div>
   </div>
 </div>
-<div id="transaction_import_form">
-  <%= form_tag import_transactions_path, :multipart => true, id: "import_transactions_form", class: "form-search" do %>
-    <%= label_tag :csv_file, "Import CSV:" %>&nbsp;&nbsp;&nbsp;
-    <%= file_field_tag :csv_file, accept: "text/csv", class: "input-file" %>
-    <%= submit_tag "Upload", class: "btn btn-primary" %>
-  <% end %>
-</div>
 <script type="text/javascript">
   var transactions_chart_data = <%= Transaction.breakdown_chart_data(@transactions) %>;
 </script>
 
 <div class="transaction_datatable_form">
   <%= render partial: 'form', locals: {transaction: @transaction} %>
+  <a href="#import_modal" role="button" class="btn" data-toggle="modal">Import</a>
+  <div id="import_modal" class="modal hide fade">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h3>Import Data</h3>
+    </div>
+    <div class="modal-body">
+      <div id="transaction_import_form">
+        <%= form_tag import_transactions_path, :multipart => true, id: "import_transactions_form", class: "form-search" do %>
+          <%= label_tag :csv_file, "Import CSV:" %>&nbsp;&nbsp;&nbsp;
+          <%= file_field_tag :csv_file, accept: "text/csv", class: "input-file" %>
+          <%= submit_tag "Upload", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div id="transaction_datatable_filter">

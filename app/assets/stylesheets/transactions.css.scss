@@ -14,6 +14,10 @@ div#transaction_import_form {
 
 div.transaction_datatable_form {
   float: left;
+
+  form {
+    display: inline;
+  }
 }
 
 div#transaction_datatable_filter {
