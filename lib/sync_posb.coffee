@@ -1,18 +1,18 @@
 casper = require('casper').create
-  verbose: true
-  logLevel: 'debug'
+  #verbose: true
+  #logLevel: 'debug'
   clientScripts: ['lib/assets/javascripts/jquery.min.js']
 
 casper.on 'remote.message', (msg)->
     this.echo('remote message caught: ' + msg)
 
 casper.start 'https://internet-banking.dbs.com.sg/posb', ->
-  this.log 'URL: ' + this.getCurrentUrl()
+  #this.log 'URL: ' + this.getCurrentUrl()
 
 casper.then ->
   uid = this.cli.get(0)
   pin = this.cli.get(1)
-  this.evaluate ->
+  this.evaluate (uid, pin)->
     document.querySelector('#UID').value = uid
     document.querySelector('#PIN').value = pin
     document.querySelector('input[value="Submit"]').click()
@@ -34,7 +34,7 @@ casper.then ->
   this.page.switchToChildFrame(0)
   this.page.switchToChildFrame(3)
   otp = this.cli.get(2)
-  this.evaluate ->
+  this.evaluate (otp)->
     document.querySelector('input[name="OTPToken"]').value = otp
     document.querySelector('input[name="submitButton"]').click()
   ,
@@ -66,6 +66,7 @@ casper.then ->
 
   resp = this.base64encode inputs['action'], 'POST', inputs
   fs = require 'fs'
-  fs.write 'posb.csv', window.atob(resp), 'w'
+  dest = if this.cli.has(3) then this.cli.get(3) else 'posb.csv'
+  fs.write dest, window.atob(resp), 'w'
 
 casper.run()
