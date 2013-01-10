@@ -34,9 +34,11 @@ class TransactionsController < ApplicationController
     if [uid, pin, otp].any?(&:blank?)
       redirect_to(:back, flash: { error: "UID, PIN and OTP must not be blank" }) and return
     else
+      script_path = Rails.root.join 'lib', 'sync_posb.coffee'
       filepath = Rails.root.join 'tmp', 'sync_posb', "#{uid}_#{Time.now.strftime('%Y%m%d_%H%I%S')}.csv"
       FileUtils.mkdir_p File.basename(filepath)
-      sleep 30
+      `casperjs #{script_path} #{uid} #{pin} #{otp} #{filepath}`
+      sleep 20
       transactions = current_user.import_csv(filepath)
       num = transactions.length
       redirect_to(:back, flash: { notice: "#{num} transaction(s) have been imported successfully" }) and return
