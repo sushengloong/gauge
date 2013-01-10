@@ -8,6 +8,7 @@ Gauge::Application.routes.draw do
 
   resources :transactions do
     post :import, :on => :collection
+    post :sync, :on => :collection
   end
 
   root :to => "transactions#index"

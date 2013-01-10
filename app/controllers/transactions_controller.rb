@@ -23,7 +23,25 @@ class TransactionsController < ApplicationController
     transactions = current_user.import_csv(params[:csv_file])
     num = transactions.length
     redirect_to(:back, flash: { notice: "#{num} transaction(s) have been imported successfully" }) and return
-  rescue => e
+  rescue Exception => e
     redirect_to(:back, flash: { error: "CSV import failed: #{e}" }) and return
+  end
+
+  def sync
+    uid = params[:uid]
+    pin = params[:pin]
+    otp = params[:otp]
+    if [uid, pin, otp].any?(&:blank?)
+      redirect_to(:back, flash: { error: "UID, PIN and OTP must not be blank" }) and return
+    else
+      filepath = Rails.root.join 'tmp', 'sync_posb', "#{uid}_#{Time.now.strftime('%Y%m%d_%H%I%S')}.csv"
+      FileUtils.mkdir_p File.basename(filepath)
+      sleep 30
+      transactions = current_user.import_csv(filepath)
+      num = transactions.length
+      redirect_to(:back, flash: { notice: "#{num} transaction(s) have been imported successfully" }) and return
+    end
+  rescue Exception => e
+    redirect_to(:back, flash: { error: "Failed to sync: #{e}\n#{e.backtrace[0]}" }) and return
   end
 end

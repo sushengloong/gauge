@@ -54,7 +54,7 @@ class Transaction < ActiveRecord::Base
   end
 
   def self.parse_csv(file)
-    file = File.new(file, 'r') if file.is_a? String
+    file = File.new(file, 'r') if file.is_a?(String) || file.is_a?(Pathname)
     arr = []
     CSV.foreach(file.path) do |row|
       row.map! { |r| r.nil? ? r : r.chomp.strip.gsub(/\s+/, ' ') }
