@@ -98,6 +98,29 @@ $ ->
   new FixedHeader oTable,
     offsetTop: 40
 
+  # create detail row code
+  fn_format_details = (table, tr)->
+    aData = table.fnGetData(tr)
+    sOut = "<table cellpadding=\"5\" cellspacing=\"0\" border=\"0\" style=\"padding-left:50px;\"><tr>"
+    $.each aData, (index, value)->
+      sOut += "<td>" + value + "</td>"
+    sOut += "</tr></table>"
+    sOut
+
+  # keep track of opened row. always close an opened row before opening another row.
+  cur_open_row = null
+
+  # bind each row click event to show detail row
+  $('table#transactions_datatable tbody tr').on 'click', ->
+    if oTable.fnIsOpen this
+      oTable.fnClose this
+      cur_open_row = null
+    else
+      if cur_open_row
+        oTable.fnClose cur_open_row
+      oTable.fnOpen(this, fn_format_details(oTable, this), 'edit_transaction_details')
+      cur_open_row = this
+
   $("input#filter_text_field").keyup ->
     oTable.fnFilter ''
     oTable.fnFilter $(this).val()
