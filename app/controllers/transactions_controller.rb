@@ -4,6 +4,7 @@ class TransactionsController < ApplicationController
   def index
     @transaction = Transaction.new
     @transactions = current_user.transactions.includes(:category)
+    flash.now.notice = "#{params[:sync_num]} transactions imported successfully" if params[:sync_num].present?
   end
 
   def create
@@ -32,18 +33,26 @@ class TransactionsController < ApplicationController
     pin = params[:pin]
     otp = params[:otp]
     if [uid, pin, otp].any?(&:blank?)
-      redirect_to(:back, flash: { error: "UID, PIN and OTP must not be blank" }) and return
+      render json: { message: 'UID, PIN and OTP must not be blank' }, status: :bad_request
     else
-      script_path = Rails.root.join 'lib', 'sync_posb.coffee'
-      filepath = Rails.root.join 'tmp', 'sync_posb', "#{uid}_#{Time.now.strftime('%Y%m%d_%H%I%S')}.csv"
-      FileUtils.mkdir_p File.basename(filepath)
-      `casperjs #{script_path} #{uid} #{pin} #{otp} #{filepath}`
-      sleep 20
-      transactions = current_user.import_csv(filepath)
-      num = transactions.length
-      redirect_to(:back, flash: { notice: "#{num} transaction(s) have been imported successfully" }) and return
+      Resque.enqueue(SyncPosbJob, current_user.id, uid, pin, otp)
+      render json: { message: 'success' }, status: :ok
     end
   rescue Exception => e
-    redirect_to(:back, flash: { error: "Failed to sync: #{e}\n#{e.backtrace[0]}" }) and return
+    render json: { message: e.message }, status: :internal_server_error
+  end
+
+  def query
+    posb = JSON.parse Resque.redis.get("users:#{current_user.id}:posb")
+    if posb.blank?
+      render json: { message: 'Cannot find sync job in backend' }, status: :bad_request
+    else
+      msg = posb['error'] || 'success'
+      status = posb['status']
+      num = posb['num'].present? ? posb['num'].to_i : nil
+      render json: { message: msg, status: status, num: num }, status: :ok
+    end
+  rescue Exception => e
+    render json: { message: e.message }, status: :internal_server_error
   end
 end

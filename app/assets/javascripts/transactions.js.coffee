@@ -116,3 +116,33 @@ $ ->
     $("body").animate
       scrollTop: 0
     , 600
+
+  # Poll server for sync ibanking job status
+  poll_sync_job_status = (job_id)->
+    $.ajax
+      type: 'POST'
+      url: $("#sync_ibanking_form input#query_url").val(),
+    .done (data, textStatus, jqXHR)->
+      if data.status == 'Done'
+        window.location = $("#sync_ibanking_form input#redirect_url").val() + "?sync_num=" + data.num
+      else if data.status == 'Error'
+        msg_div = $("#sync_ibanking_form_msg")
+        msg_div.text "Error: " + data.message
+        msg_div.removeClass()
+        msg_div.addClass 'text-error'
+      else
+        setTimeout poll_sync_job_status, 5000
+    .fail (jqXHR, textStatus, errorThrown)->
+      alert(errorThrown)
+
+  # AJAX callback for sync ibanking
+  $('form#sync_ibanking_form').on 'ajax:success', (evt, xhr, status, error)->
+    msg_div = $(this).find("#sync_ibanking_form_msg")
+    msg_div.text "syncing...please wait for a short while..."
+    msg_div.addClass 'text-info'
+    setTimeout(poll_sync_job_status, 30000)
+  .on 'ajax:error', (evt, xhr, status, error)->
+    resp = $.parseJSON(xhr.responseText)
+    msg_div = $(this).find("#sync_ibanking_form_msg:first")
+    msg_div.text resp['message'] || "unknown error!"
+    msg_div.addClass 'text-error'

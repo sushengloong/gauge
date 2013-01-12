@@ -9,9 +9,11 @@ Gauge::Application.routes.draw do
   resources :transactions do
     post :import, :on => :collection
     post :sync, :on => :collection
+    post :query, :on => :collection
   end
 
   root :to => "transactions#index"
+  mount Resque::Server, :at => "/resque"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
