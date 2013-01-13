@@ -89,7 +89,15 @@ $ ->
 
   oTable = $('table#transactions_datatable').dataTable
     sDom: '<"H"lr>t<"F"ip>'
-    aoColumns: [null, null, null, {sType: "currency"}]
+    aoColumns: [
+      bSearchable: false
+      bVisible: false
+    , null, null, null
+      sType: "currency"
+    ,
+      bSearchable: false
+      bVisible: false
+    ]
     bPaginate: false
     aaSorting: []
     oLanguage:
@@ -101,11 +109,14 @@ $ ->
   # create detail row code
   fn_format_details = (table, tr)->
     aData = table.fnGetData(tr)
-    sOut = "<table cellpadding=\"5\" cellspacing=\"0\" border=\"0\" style=\"padding-left:50px;\"><tr>"
-    $.each aData, (index, value)->
-      sOut += "<td>" + value + "</td>"
-    sOut += "</tr></table>"
-    sOut
+    output = ''
+    $.ajax
+      type: 'GET'
+      async: false
+      url: aData[5]
+    .done (data, textStatus, jqXHR)->
+      output += data
+    output
 
   # keep track of opened row. always close an opened row before opening another row.
   cur_open_row = null
@@ -128,6 +139,7 @@ $ ->
   $("input.datepicker").datepicker
     dateFormat: "dd M yy"
 
+  # Scrolling pass datatable header displays sticky footer
   $(window).scroll ->
     if ($(this).scrollTop()+40) >= $("#transactions_datatable").offset().top
       $("#fixed-footer").slideDown("fast")

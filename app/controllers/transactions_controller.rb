@@ -8,14 +8,27 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    @transaction = Transaction.new params[:transaction]
-    @transaction.user = current_user
+    @transaction = current_user.build_transaction params[:transaction]
     if @transaction.save
       redirect_to(:back, flash: { notice: "Transaction added successfully" }) and return
     else
       @transactions = current_user.transactions.includes(:category)
       flash.now.alert = "Failed to add transaction. #{@transaction.errors.full_messages.join('. ')}"
       render :index
+    end
+  end
+
+  def edit
+    @transaction = current_user.transactions.find params[:id]
+    render :layout => false
+  end
+
+  def update
+    @transaction = current_user.transactions.find params[:id]
+    if @transaction.update_attributes(params[:transaction])
+      redirect_to transactions_url, flash: { notice: "Transaction updated successfully" }
+    else
+      redirect_to transactions_url, flash: { error: "Transaction update failed: #{@transaction.errors.full_messages.join('.')}" }
     end
   end
 
