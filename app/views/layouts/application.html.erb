@@ -20,14 +20,14 @@
     <div id="main" role="main">
       <div class="container-fluid">
         <div class="row-fluid">
-          <div class="span10">
+          <div class="span9">
             <div class="content">
               <%= render 'layouts/messages' %>
               <%= yield %>
             </div>
           </div>
-          <div class="span2">
-            <div class="content"><%= render 'layouts/sidebar' %></div>
+          <div class="span3">
+            <div class="content" data-spy="affix"><%= render 'layouts/sidebar' %></div>
           </div>
           <footer>
           </footer>
