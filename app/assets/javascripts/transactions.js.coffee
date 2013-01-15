@@ -165,16 +165,21 @@ $ ->
         msg_div.text "Error: " + data.message
         msg_div.removeClass()
         msg_div.addClass 'text-error'
+        $.unblockUI()
       else
         setTimeout poll_sync_job_status, 5000
     .fail (jqXHR, textStatus, errorThrown)->
       alert(errorThrown)
+      $.unblockUI()
 
   # AJAX callback for sync ibanking
   $('form#sync_ibanking_form').on 'ajax:success', (evt, xhr, status, error)->
     msg_div = $(this).find("#sync_ibanking_form_msg")
     msg_div.text "syncing...please wait for a short while..."
     msg_div.addClass 'text-info'
+    $.blockUI
+      message: 'syncing up your ibanking...please wait for a short while...'
+      baseZ: 9999
     setTimeout(poll_sync_job_status, 30000)
   .on 'ajax:error', (evt, xhr, status, error)->
     resp = $.parseJSON(xhr.responseText)

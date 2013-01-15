@@ -21,4 +21,5 @@
 //= require dataTables/extras/FixedHeader
 //= require highcharts
 //= require highcharts/modules/exporting
+//= require jquery.blockUI
 //= require_tree .
