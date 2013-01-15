@@ -31,6 +31,7 @@ end
 
 gem 'jquery-rails'
 gem 'awesome_print'
+gem 'interactive_editor'
 gem 'highcharts-rails', '~> 2.3.0'
 gem 'resque', :require => 'resque/server'
 
