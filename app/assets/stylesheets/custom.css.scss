@@ -2,8 +2,12 @@
   input.input {
     margin-bottom: 8px !important;
   }
+  input#remember_me {
+    float: left;
+    margin-right: 10px;
+  }
   input.submit-btn {
-    margin-top: 0px;
+    margin-top: 3px;
     width: 100%;
   }
 }
