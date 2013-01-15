@@ -5,6 +5,7 @@ Gauge::Application.routes.draw do
 
   resources :sessions
   resources :users
+  resources :password_resets
 
   resources :transactions do
     post :import, :on => :collection

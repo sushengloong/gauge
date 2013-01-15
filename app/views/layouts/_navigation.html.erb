@@ -15,7 +15,8 @@
         <%= form_tag sessions_path, id: "login-dropdown-form" do %>
           <%= text_field_tag :email, params[:email], placeholder: "Email", class: "input" %>
           <%= password_field_tag :password, params[:password], placeholder: "Password", class: "input" %>
-          <%= check_box_tag :remember_me, params[:remember_me] %>
+          <p><%= link_to "Forgotten password?", new_password_reset_path %></p>
+          <%= check_box_tag :remember_me, 1, true %>
           <%= label_tag :remember_me, "Remember Me" %>
           <%= submit_tag "Log In", class: "btn btn-primary submit-btn" %>
         <% end %>
