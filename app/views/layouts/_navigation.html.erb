@@ -20,6 +20,10 @@
           <%= label_tag :remember_me, "Remember Me" %>
           <%= submit_tag "Log In", class: "btn btn-primary submit-btn" %>
         <% end %>
+        <div class="paypal-access-ctn">
+          <p>or</p>
+          <%= link_to image_tag("https://www.paypalobjects.com/en_US/Marketing/i/btn/login-with-paypal-button.png"), "/auth/paypal" %>
+        </div>
       </div>
     </li>
   <% end %>

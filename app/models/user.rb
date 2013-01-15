@@ -9,6 +9,26 @@ class User < ActiveRecord::Base
 
   before_create { generate_token(:auth_token) }
 
+  def self.find_or_create_from_omniauth omniauth
+    # some omniauth providers do not supply email but for this app we should only
+    # use those that provide email.
+    begin
+      email = omniauth[:info][:email]
+    rescue
+      raise "Email not found in omniauth-#{omniauth[:provider]} hash: #{omniauth.inspect}"
+    end
+    find_by_email(email) || create_from_omniauth(omniauth)
+  end
+
+  def self.create_from_omniauth omniauth
+    create! do |u|
+      u.email    = omniauth[:info][:email]
+      u.password = SecureRandom.base64(15).tr('+/ = lIO0', 'pqrsxyz') # same as Devise.friendly_token
+      u.uid      = omniauth[:uid]
+      u.provider = omniauth[:provider]
+    end
+  end
+
   def import_csv(csv_file)
     transactions = Transaction.parse_csv(csv_file)
     transactions.each do |t|

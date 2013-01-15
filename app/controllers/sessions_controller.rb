@@ -3,7 +3,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_email(params[:email])
+    if params[:provider].present? && omniauth = request.env["omniauth.auth"]
+      logger.debug "Omniauth Paypal: #{omniauth.inspect}"
+      user = User.find_or_create_from_omniauth(omniauth)
+    else
+      user = User.find_by_email(params[:email])
+    end
     if user && user.authenticate(params[:password])
       if params[:remember_me]
         cookies.permanent[:auth_token] = user.auth_token

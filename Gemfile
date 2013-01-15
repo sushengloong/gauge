@@ -34,6 +34,7 @@ gem 'awesome_print'
 gem 'interactive_editor'
 gem 'highcharts-rails', '~> 2.3.0'
 gem 'resque', :require => 'resque/server'
+gem 'omniauth-paypal', :git => 'git://github.com/surferdwa/omniauth-paypal.git'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'

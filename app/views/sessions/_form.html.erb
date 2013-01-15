@@ -25,6 +25,8 @@
         </label>
       </div>
     </div>
-    <div class="form-actions"><%= submit_tag "Log In", class: "btn btn-primary" %>
+    <div class="form-actions">
+      <%= submit_tag "Log In", class: "btn btn-primary" %> &nbsp;&nbsp;&nbsp; or &nbsp;&nbsp;&nbsp; <%= link_to image_tag("https://www.paypalobjects.com/en_US/Marketing/i/btn/login-with-paypal-button.png"), "/auth/paypal" %>
+    </div>
   </fieldset>
 <% end %>

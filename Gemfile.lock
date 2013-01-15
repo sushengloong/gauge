@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/surferdwa/omniauth-paypal.git
+  revision: 367de327edbf792f0b8898ab864eb3e9ce65c808
+  specs:
+    omniauth-paypal (0.1.1)
+      omniauth-oauth2 (~> 1.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -48,9 +55,13 @@ GEM
     eventmachine (1.0.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    faraday (0.8.4)
+      multipart-post (~> 1.1)
+    hashie (1.2.0)
     highcharts-rails (2.3.3.1)
       railties (>= 3.1)
     hike (1.2.1)
+    httpauth (0.2.0)
     i18n (0.6.1)
     interactive_editor (0.0.10)
       spoon (>= 0.0.1)
@@ -64,12 +75,27 @@ GEM
       jquery-rails
       railties (>= 3.1.0)
     json (1.7.6)
+    jwt (0.1.5)
+      multi_json (>= 1.0)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
     multi_json (1.5.0)
+    multipart-post (1.1.5)
+    oauth2 (0.8.0)
+      faraday (~> 0.8)
+      httpauth (~> 0.1)
+      jwt (~> 0.1.4)
+      multi_json (~> 1.0)
+      rack (~> 1.2)
+    omniauth (1.1.1)
+      hashie (~> 1.2)
+      rack
+    omniauth-oauth2 (1.1.1)
+      oauth2 (~> 0.8.0)
+      omniauth (~> 1.0)
     polyglot (0.3.3)
     quiet_assets (1.0.1)
       railties (~> 3.1)
@@ -154,6 +180,7 @@ DEPENDENCIES
   jquery-datatables-rails
   jquery-rails
   jquery-ui-rails
+  omniauth-paypal!
   quiet_assets
   rails (= 3.2.11)
   resque
