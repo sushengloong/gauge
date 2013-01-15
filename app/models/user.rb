@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   validates :email, uniqueness: true
 
+  before_create { generate_token(:auth_token) }
+
   def import_csv(csv_file)
     transactions = Transaction.parse_csv(csv_file)
     transactions.each do |t|
@@ -33,17 +35,9 @@ class User < ActiveRecord::Base
     data
   end
 
-  # def past_transaction_trends(num = 6)
-  #   today = Date.today
-  #   start_date = today.beginning_of_month - num.months
-  #   transactions = self.transactions.includes(:category).where(:trans_date => start_date.beginning_of_day..today.end_of_day)
-  #   transactions = Hash[transactions.group_by{ |t| t.trans_date.beginning_of_month }.sort]
-  #   data = {}
-  #   transactions.each do |month, trans|
-  #     income = trans.select{ |t| t.category.category_type == Category::TYPE_INCOME }.inject(0){ |sum, t| sum + t.amount }
-  #     expenses = trans.select{ |t| t.category.category_type == Category::TYPE_EXPENSE }.inject(0){ |sum, t| sum + t.amount }
-  #     data[month.strftime("%b")] = { :income => income, :expenses => expenses, :net_income => (income - expenses) }
-  #   end
-  #   data
-  # end
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
+  end
 end
