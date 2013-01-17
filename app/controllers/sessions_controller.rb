@@ -8,8 +8,9 @@ class SessionsController < ApplicationController
       user = User.find_or_create_from_omniauth(omniauth)
     else
       user = User.find_by_email(params[:email])
+      user = nil unless user && user.authenticate(params[:password])
     end
-    if user && user.authenticate(params[:password])
+    if user
       if params[:remember_me]
         cookies.permanent[:auth_token] = user.auth_token
       else
