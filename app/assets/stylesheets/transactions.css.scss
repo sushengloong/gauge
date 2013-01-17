@@ -2,6 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+div#date-range-popover {
+  div.modal-body {
+    #datepicker-start-ctn {
+      float: left;
+    }
+    #datepicker-end-ctn {
+      float: right;
+    }
+    span {
+      font-weight: bold;
+    }
+    .btn {
+      float: right;
+      margin-top: 10px;
+    }
+  }
+}
+
 div.chart-container {
   min-width: 400px;
   height: 400px;

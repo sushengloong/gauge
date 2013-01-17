@@ -186,3 +186,6 @@ $ ->
     msg_div = $(this).find("#sync_ibanking_form_msg:first")
     msg_div.text resp['message'] || "unknown error!"
     msg_div.addClass 'text-error'
+
+  # datepickers
+  $('.datepicker').datepicker()

@@ -21,7 +21,9 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.2.2.0'
   gem 'bootswatch-rails'
   gem 'jquery-ui-rails'
+  gem 'jquery-ui-themes'
   gem 'jquery-datatables-rails'
+  gem 'highcharts-rails', '~> 2.3.0'
 end
 
 group :development do
@@ -32,7 +34,6 @@ end
 gem 'jquery-rails'
 gem 'awesome_print'
 gem 'interactive_editor'
-gem 'highcharts-rails', '~> 2.3.0'
 gem 'resque', :require => 'resque/server'
 gem 'omniauth-paypal', :git => 'git://github.com/surferdwa/omniauth-paypal.git'
 
