@@ -110,6 +110,12 @@
   </div>
 </div>
 
+<% content_for :sidebar do %>
+  <div class="content" data-spy="affix">
+    <h1><%= Time.now.strftime('%d-%m-%Y') %></h1>
+  </div>
+<% end %>
+
 <script>
   var past_transaction_trends = <%= current_user.past_transaction_trends.to_json.html_safe %>;
   past_transaction_trends["income"] = $.map(past_transaction_trends['income'], function(e,i) {return parseFloat(e);})
