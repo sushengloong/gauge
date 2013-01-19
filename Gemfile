@@ -19,7 +19,7 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   gem 'bootstrap-sass', '~> 2.2.2.0'
-  gem 'bootswatch-rails'
+  gem 'font-awesome-rails'
   gem 'jquery-ui-rails'
   gem 'jquery-ui-themes'
   gem 'jquery-datatables-rails'

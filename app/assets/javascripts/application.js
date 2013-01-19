@@ -14,9 +14,6 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require bootstrap
-//= require bootstrap-scrollspy
-//= require bootstrap-modal
-//= require bootstrap-dropdown
 //= require dataTables/jquery.dataTables
 //= require dataTables/extras/FixedHeader
 //= require highcharts

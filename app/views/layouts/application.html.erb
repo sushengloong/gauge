@@ -1,40 +1,107 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
+<head>
+	<meta charset="utf-8">
     <title><%= content_for?(:title) ? yield(:title) : "Gauge" %></title>
-    <%= stylesheet_link_tag    "application", :media => "all" %>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">    
+    
+    <!-- CSS files-->
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <!--[if lt IE 8]>
+      <%= stylesheet_link_tag "font-awesome-ie7.min.css", media: "all" %>
+    <![endif]-->
+    
+    <!-- Google font -->
+    <link href='http://fonts.googleapis.com/css?family=Asap:400,700' rel='stylesheet' type='text/css'>
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->	
     <%= javascript_include_tag "application" %>
+
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
-  </head>
-  <body>
-    <header class="navbar navbar-fixed-top">
-    <nav class="navbar-inner">
-    <div class="container">
-      <%= render 'layouts/navigation' %>
-    </div>
-    </nav>
-    </header>
-    <div id="main" role="main">
-      <div class="container-fluid">
-        <div class="row-fluid">
-          <div class="span<%= content_for?(:sidebar) ? '9' : '12' %>">
-            <div class="content">
-              <%= render 'layouts/messages' %>
-              <%= yield %>
-            </div>
-          </div>
-          <% if content_for?(:sidebar) %>
-            <div class="span3">
-              <%= yield :sidebar %>
-            </div>
-          <% end %>
-          <footer>
-          </footer>
-        </div>
-      </div> <!--! end of .container -->
-    </div> <!--! end of #main -->
-  </body>
+</head>
+
+<body>
+	<!-- Navbar -->
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="index.html">Alveolae Dashboard</a>
+				<div class="nav-collapse">
+					<ul class="nav pull-right">
+						<li class="divider-vertical"></li>
+						<li><a href="messages.html"><i class="icon-comments-alt"></i>&nbsp;&nbsp;Messages&nbsp;&nbsp;<span class="label label-important">4 new</span></a></li>
+						<li class="divider-vertical"></li>
+						<li class="dropdown">
+							<a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-bullhorn"></i>&nbsp;&nbsp;Latest activity&nbsp;&nbsp;<span class="label label-important">6</span></a>
+							<ul class="dropdown-menu">
+                            	<li><a href="#"><i class="icon-comment"></i>New comment<span class="time">24 mins ago</span></a></li>
+                            	<li><a href="#"><i class="icon-envelope-alt"></i>New message<span class="time">50 mins ago</span></a></li>
+								<li><a href="#"><i class="icon-user"></i>User registration<span class="time">17 hours ago</span></a></li>
+								<li><a href="#"><i class="icon-lock"></i>User logged in<span class="time">1 day ago</span></a></li>
+                                <li><a href="#"><i class="icon-lock"></i>User signed in<span class="time">2 days ago</span></a></li>
+								<li><a href="#"><i class="icon-trash"></i>User deleted account<span class="time">5 days ago</span></a></li>
+                                <li><hr><a class="dropdown-menu-footer">
+                                	<span class="footer"><i class="icon-eye-open"></i>&nbsp;&nbsp;View all activity</span></a>
+                                </li>	
+							</ul>
+						</li>
+						<li class="divider-vertical"></li>
+						<li class="dropdown">
+							<a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-cloud"></i>&nbsp;&nbsp;Admin<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="user-account.html"><i class="icon-file"></i>&nbsp;&nbsp;User information</a></li>
+								<li><a href="password.html"><i class="icon-key"></i>&nbsp;&nbsp;Change Password</a></li>
+							</ul>
+						</li>
+						<li class="divider-vertical"></li>
+						<li><a href="login.html"><i class="icon-lock"></i>&nbsp;&nbsp;Logout</a></li>
+						<li class="divider-vertical"></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /Navbar -->
+
+	<!-- Main content -->
+	<div id="main-content">
+		<!-- Container -->
+		<div class="container">
+			<!-- Header boxes -->
+			<div class="box-container">
+				<div class="box-holder">
+					<a href="index.html"><div class="box"><span><i class="icon-dashboard"></i></span>Home</div></a>
+				</div>
+				<div class="box-holder">						
+					<a href="messages.html"><div class="box"><span><i class="icon-inbox"></i></span>Messages</div></a>
+				</div>
+				<div class="box-holder">						
+					<a href="gallery.html"><div class="box"><span><i class="icon-camera-retro"></i></span>Gallery</div></a>
+				</div>
+				<div class="box-holder">						
+					<a href="user-account.html"><div class="box"><span><i class="icon-globe"></i></span>User information</div></a>
+				</div>
+			</div>
+			<!-- /Header boxes -->
+
+      <%= yield %>
+
+			<!-- Footer -->
+			<div id="footer">
+				<hr>
+				<p class="pull-right">Company name &copy; 2012</p>
+			</div>
+			<!-- /Footer -->
+	
+		</div>
+		<!-- /Container -->
+	</div>
+	<!-- /Main content -->
+	
+</body>
 </html>
