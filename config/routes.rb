@@ -1,6 +1,5 @@
 Gauge::Application.routes.draw do
   get "pages/index"
-
   get "pages/dashboard"
 
   get 'signup', to: 'users#new', as: 'signup'
@@ -19,7 +18,7 @@ Gauge::Application.routes.draw do
     post :query, :on => :collection
   end
 
-  root :to => "transactions#index"
+  root :to => "pages#index"
   mount Resque::Server, :at => "/resque"
 
   # The priority is based upon order of creation:

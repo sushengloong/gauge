@@ -1,0 +1,63 @@
+/*********************/
+/*-	Navbar section	-*/
+/*********************/
+
+$theme_green: #49708A;
+$theme_white: #F5F5F5;
+
+#main-content {
+  padding-top: 10px;
+}
+.navbar {
+  font-weight: 400;
+
+  color: $theme_white;
+
+  .navbar-inner {
+    background: $theme_green;
+
+    .container {
+      background: $theme_green;
+
+      .brand {
+        position: relative;
+        background: $theme_green;
+        color: $theme_white;
+        font-size: 18px;
+        font-weight: 500;
+      }
+      .nav > li > a {
+        font-size: 13px;
+        color: $theme_white;
+        text-shadow: none;
+      }
+      .nav > li > a:hover {
+        color: #88ABC2;
+        text-shadow: none;
+      }
+    }
+  }
+
+}
+
+/*********************/
+/*-	Dashboard Gauges - Boxes section	-*/
+/*********************/
+
+#dashboard-gauges.box-container {
+  .box-holder {
+    vertical-align:top;
+    .box {
+      text-align: left;
+      padding: 0px;
+      height: 100px;
+      img {
+        float: left;
+      }
+      .dashboard-gauge {
+        width: 120px; 
+        float: left;
+      }
+    }
+  }
+}

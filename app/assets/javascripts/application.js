@@ -19,4 +19,6 @@
 //= require highcharts
 //= require highcharts/modules/exporting
 //= require jquery.blockUI
+//= require raphael.2.1.0
+//= require justgage.1.0.1
 //= require_tree .

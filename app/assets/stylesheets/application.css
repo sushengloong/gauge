@@ -12,6 +12,7 @@
  *= require bootstrap
  *= require bootstrap-responsive
  *= require alveolae
+ *= require alveolae_override
  *= require font-awesome
  *= require custom
  *=# require jquery.ui.all
