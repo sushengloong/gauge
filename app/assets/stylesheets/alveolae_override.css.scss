@@ -30,10 +30,18 @@ $theme_white: #F5F5F5;
         font-size: 13px;
         color: $theme_white;
         text-shadow: none;
+        b.caret {
+          border-top-color: $theme_white;
+          border-bottom-color: $theme_white;
+        }
       }
       .nav > li > a:hover {
         color: #88ABC2;
         text-shadow: none;
+        b.caret {
+          border-top-color: #88ABC2;
+          border-bottom-color: #88ABC2;
+        }
       }
     }
   }
