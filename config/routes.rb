@@ -6,6 +6,7 @@ Gauge::Application.routes.draw do
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/login')
   get 'dashboard', to: 'pages#dashboard', as: 'dashboard'
+  get 'cashflow', to: 'transactions#index', as: 'cashflow'
 
   resources :sessions
   resources :users

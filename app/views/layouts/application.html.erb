@@ -49,17 +49,17 @@
       <div id="navbar" class="navbar">
         <div class="navbar-inner">
           <div class="container">
-            <a class="brand" href="index.html">Gauge</a>
+            <a class="brand" href="<%= root_path %>">Gauge</a>
             <div class="nav-collapse">
               <ul class="nav pull-right">
                 <li class="divider-vertical"></li>
-                <li><a href="#"><i class="icon-dashboard"></i>&nbsp;&nbsp;Dashboard</a></li>
+                <li><a href="<%= dashboard_path %>"><i class="icon-dashboard"></i>&nbsp;&nbsp;Dashboard</a></li>
                 <li class="divider-vertical"></li>
                 <li><a href="#"><i class="icon-tasks"></i>&nbsp;&nbsp;Goals</a></li>
                 <li class="divider-vertical"></li>
                 <li><a href="#"><i class="icon-bar-chart"></i>&nbsp;&nbsp;Net Worth</a></li>
                 <li class="divider-vertical"></li>
-                <li><a href="#"><i class="icon-money"></i>&nbsp;&nbsp;Cash Flow</a></li>
+                <li><a href="<%= cashflow_path %>"><i class="icon-money"></i>&nbsp;&nbsp;Cash Flow</a></li>
                 <li class="divider-vertical"></li>
                 <li class="dropdown">
                   <% if current_user %>
