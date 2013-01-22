@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    redirect_to dashboard_url if current_user.present?
   end
 
   def create
@@ -16,7 +17,7 @@ class SessionsController < ApplicationController
       else
         cookies[:auth_token] = user.auth_token
       end
-      redirect_to root_url
+      redirect_to dashboard_url
     else
       flash.now.alert = "Email or password is invalid."
       render :new
