@@ -15,8 +15,8 @@
  *= require alveolae_override
  *= require font-awesome
  *= require custom
- *=# require jquery.ui.all
- *=# require jquery-ui/flick
+ *= require jquery.ui.all
+ *= require jquery-ui/flick
  *=# require dataTables/jquery.dataTables
  *=# require_tree .
  */
