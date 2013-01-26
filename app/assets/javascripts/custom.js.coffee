@@ -1,4 +1,9 @@
 $ ->
+  # workaround to clear twitter bootstrap remote cache
+  # http://stackoverflow.com/questions/12286332/twitter-bootstrap-remote-modal-shows-same-content-everytime/12287169#12287169
+  $('body').on 'hidden', '.modal', ->
+    $(this).removeData('modal')
+
   dashboard_gauges = new Array(4)
   for i in [1..dashboard_gauges.length] by 1
     dashboard_gauges[i] = new JustGage

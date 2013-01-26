@@ -1,0 +1,6 @@
+var tbody = $('table#goals-table tbody');
+tbody.find('tr#goal_<%= @goal.id %>').remove();
+
+if (tbody.find('tr').not('.no-data').length == 0) {
+  tbody.append('<tr class="no-data"><td>No goals</td></tr>');
+}

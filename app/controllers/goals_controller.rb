@@ -41,7 +41,6 @@ class GoalsController < ApplicationController
   # POST /goals.json
   def create
     @goal = Goal.new(params[:goal])
-    ap @goal
 
     respond_to do |format|
       if @goal.save
@@ -65,9 +64,11 @@ class GoalsController < ApplicationController
       if @goal.update_attributes(params[:goal])
         format.html { redirect_to @goal, notice: 'Goal was successfully updated.' }
         format.json { head :no_content }
+        format.js
       else
         format.html { render action: "edit" }
         format.json { render json: @goal.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -81,6 +82,7 @@ class GoalsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to goals_url }
       format.json { head :no_content }
+      format.js
     end
   end
 end

@@ -1,13 +1,13 @@
 <div class="widget widget-table">
   <div class="widget-header">
     <h3><i class="icon-table"></i>&nbsp;&nbsp;Goals</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="<%= new_goal_path(:layout => 'false') %>" class="btn btn-success" data-toggle="modal" data-target="#new-goal-ctn"><i class="icon-plus"></i>&nbsp;&nbsp;Add</a>
+    <a href="<%= new_goal_path(layout: 'false') %>" class="btn btn-success" data-toggle="modal" data-target="#goal-ctn"><i class="icon-plus"></i>&nbsp;&nbsp;Add</a>
   </div>
   <div class="widget-content">
     <table id="goals-table" class="table table-striped table-bordered">
       <tbody>
         <% if @goals.blank? %>
-          <tr class="no-data"><td>Don't you have any goal in your life? Start adding and working towards your goals now!</td></tr> 
+          <tr class="no-data"><td>Don&#39;t you have any goal in your life? Start adding and working towards your goals now!</td></tr> 
         <% else %>
           <% @goals.each do |goal| %>
             <%= render goal %>
@@ -18,10 +18,10 @@
   </div>
 </div>
 
-<div id="new-goal-ctn" class="modal fade">
+<div id="goal-ctn" class="modal fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>Add Goal</h3>
+    <h3>Your Goal Details</h3>
   </div>
   <div class="modal-body">
   </div>

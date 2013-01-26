@@ -16,10 +16,6 @@
   $('div#goal-ctn').modal('hide');
 
   var tbody = $('table#goals-table tbody');
-  if (tbody.find('tr').not('.no-data').length == 0) {
-    $('table#goals-table tbody').html("<%= escape_javascript render(@goal) %>");
-  } else {
-    $('table#goals-table tbody').append("<%= escape_javascript render(@goal) %>");
-  }
+  tbody.find('tr#goal_<%= @goal.id %>').replaceWith("<%= escape_javascript render(@goal) %>");
 
 <% end %>

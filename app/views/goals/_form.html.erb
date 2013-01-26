@@ -15,7 +15,7 @@
   <div class="control-group">
     <%= f.label :due_date, class: "control-label" %>
     <div class="controls">
-      <%= f.text_field :due_date, class: "input input-medium datepicker" %>
+      <%= f.text_field :due_date, value: @goal.due_date.blank? ? '' : @goal.due_date.strftime('%d-%m-%Y'), class: "input input-medium datepicker" %>
     </div>
   </div>
   <div class="control-group">
