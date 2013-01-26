@@ -46,9 +46,11 @@ class GoalsController < ApplicationController
       if @goal.save
         format.html { redirect_to @goal, notice: 'Goal was successfully created.' }
         format.json { render json: @goal, status: :created, location: @goal }
+        format.js
       else
         format.html { render action: "new" }
         format.json { render json: @goal.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
