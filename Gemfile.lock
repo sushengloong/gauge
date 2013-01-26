@@ -38,9 +38,14 @@ GEM
     arel (3.0.2)
     awesome_print (1.1.0)
     bcrypt-ruby (3.0.1)
+    better_errors (0.3.2)
+      coderay (>= 1.0.0)
+      erubis (>= 2.7.0)
+    binding_of_caller (0.6.8)
     bootstrap-sass (2.2.2.0)
       sass (~> 3.2)
     builder (3.0.4)
+    coderay (1.0.8)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -86,6 +91,9 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    meta_request (0.2.1)
+      rack-contrib
+      rails
     mime-types (1.19)
     multi_json (1.5.0)
     multi_xml (0.5.1)
@@ -108,6 +116,8 @@ GEM
     rack (1.4.3)
     rack-cache (1.2)
       rack (>= 0.4)
+    rack-contrib (1.1.0)
+      rack (>= 0.9.1)
     rack-protection (1.3.2)
       rack
     rack-ssl (1.3.2)
@@ -181,6 +191,8 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   bcrypt-ruby (~> 3.0.0)
+  better_errors
+  binding_of_caller
   bootstrap-sass (~> 2.2.2.0)
   coffee-rails (~> 3.2.1)
   font-awesome-rails
@@ -190,6 +202,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   jquery-ui-themes
+  meta_request
   omniauth-paypal!
   quiet_assets
   rails (= 3.2.11)
