@@ -31,18 +31,7 @@
 		<!-- Container -->
 		<div class="container">
 			<!-- Header boxes -->
-			<div id="dashboard-gauges" class="box-container">
-        <% 4.times do |i| %>
-          <div class="box-holder">
-            <a href="index.html">
-              <div class="box">
-                <img src="http://placehold.it/160x100" alt="goal" />
-                <div id="dashboard-gauge-<%= i+1 %>" class="dashboard-gauge"></div>
-              </div>
-            </a>
-          </div>
-        <% end %>
-			</div>
+      <%= render 'layouts/top_gauges' %>
 			<!-- /Header boxes -->
 
       <!-- Navbar -->

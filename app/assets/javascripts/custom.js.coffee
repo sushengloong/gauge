@@ -4,10 +4,10 @@ $ ->
   $('body').on 'hidden', '.modal', ->
     $(this).removeData('modal')
 
-  dashboard_gauges = new Array(4)
-  for i in [1..dashboard_gauges.length] by 1
-    dashboard_gauges[i] = new JustGage
-      id: "dashboard-gauge-" + i
+  top_gauges = new Array(4)
+  for i in [1..top_gauges.length] by 1
+    top_gauges[i] = new JustGage
+      id: "top-gauge-" + i
       value: 67
       min: 0
       max: 100

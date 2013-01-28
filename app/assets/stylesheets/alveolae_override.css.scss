@@ -52,7 +52,7 @@ $theme_white: #F5F5F5;
 /*-	Dashboard Gauges - Boxes section	-*/
 /*********************/
 
-#dashboard-gauges.box-container {
+#top-gauges.box-container {
   .box-holder {
     vertical-align:top;
     .box {
@@ -62,7 +62,7 @@ $theme_white: #F5F5F5;
       img {
         float: left;
       }
-      .dashboard-gauge {
+      .top-gauge {
         width: 120px; 
         float: left;
       }

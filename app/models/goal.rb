@@ -9,4 +9,7 @@ class Goal < ActiveRecord::Base
   validates_date :due_date, format: 'dd-mm-yyyy'
   validates :name, length: 3..120
   validates :user, presence: true
+
+  scope :undue, ->{ where('due_date > ?', Date.today) }
+  scope :urgent, -> { undue.order('due_date') }
 end

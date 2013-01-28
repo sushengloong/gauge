@@ -1,0 +1,12 @@
+<div id="top-gauges" class="box-container">
+  <% 4.times do |i| %>
+    <div class="box-holder">
+      <a href="#">
+        <div class="box">
+          <img src="<%= top_gauge_img_link i %>" alt="goal" />
+          <div id="top-gauge-<%= i+1 %>" class="top-gauge"></div>
+        </div>
+      </a>
+    </div>
+  <% end %>
+</div>

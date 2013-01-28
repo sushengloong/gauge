@@ -68,4 +68,8 @@ class User < ActiveRecord::Base
     save!
     UserMailer.password_reset(self).deliver
   end
+
+  def top_goals(num = 4)
+    self.goals.urgent.limit(num)
+  end
 end
