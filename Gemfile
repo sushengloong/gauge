@@ -40,6 +40,9 @@ gem 'interactive_editor'
 gem 'resque', :require => 'resque/server'
 gem 'omniauth-paypal', :git => 'git://github.com/surferdwa/omniauth-paypal.git'
 gem 'validates_timeliness', '~> 3.0.14'
+gem 'rmagick'
+gem 'carrierwave'
+gem 'remotipart', '~> 1.0.2'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'

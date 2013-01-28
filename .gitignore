@@ -19,3 +19,5 @@ tags
 .sass-cache/
 *.swp
 *~
+
+public/uploads/

@@ -19,6 +19,13 @@
     </div>
   </div>
   <div class="control-group">
+    <%= f.label :image, class: "control-label" %>
+    <div class="controls">
+      <%= image_tag @goal.image_url(:thumb) if @goal.image? %>
+      <%= f.file_field :image, class: "input input-medium datepicker" %>
+    </div>
+  </div>
+  <div class="control-group">
     <div class="controls">
       <%= f.submit "Save", class: "btn btn-primary" %>
     </div>

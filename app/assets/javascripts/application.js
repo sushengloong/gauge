@@ -21,4 +21,5 @@
 //= require jquery.blockUI
 //= require raphael.2.1.0
 //= require justgage.1.0.1
+//= require jquery.remotipart
 //= require_tree .

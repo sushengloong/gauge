@@ -1,5 +1,5 @@
 <tr id="goal_<%= goal.id %>">
-  <td>Thumbnail</td>
+  <td><%= image_tag goal.image_url(:thumb) if goal.image? %></td>
   <td><%= goal.name %> <%= goal.amount %> <%= goal.due_date %></td>
   <td class="actions">
     <a href="<%= edit_goal_path(goal, layout: 'false') %>" class="btn btn-small btn-info" data-toggle="modal" data-target="#goal-ctn"><i class="icon-pencil"></i></a>
