@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
 
+  has_many :goals
   has_many :transactions
 
   attr_accessible :email, :password, :password_confirmation

@@ -1,8 +1,10 @@
 class GoalsController < ApplicationController
+  before_filter :authorize
+
   # GET /goals
   # GET /goals.json
   def index
-    @goals = Goal.all
+    @goals = current_user.goals
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +15,7 @@ class GoalsController < ApplicationController
   # GET /goals/1
   # GET /goals/1.json
   def show
-    @goal = Goal.find(params[:id])
+    @goal = current_user.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +26,7 @@ class GoalsController < ApplicationController
   # GET /goals/new
   # GET /goals/new.json
   def new
-    @goal = Goal.new
+    @goal = current_user.goals.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +36,13 @@ class GoalsController < ApplicationController
 
   # GET /goals/1/edit
   def edit
-    @goal = Goal.find(params[:id])
+    @goal = current_user.goals.find(params[:id])
   end
 
   # POST /goals
   # POST /goals.json
   def create
-    @goal = Goal.new(params[:goal])
+    @goal = current_user.goals.build(params[:goal])
 
     respond_to do |format|
       if @goal.save
@@ -58,7 +60,7 @@ class GoalsController < ApplicationController
   # PUT /goals/1
   # PUT /goals/1.json
   def update
-    @goal = Goal.find(params[:id])
+    @goal = current_user.goals.find(params[:id])
 
     respond_to do |format|
       if @goal.update_attributes(params[:goal])
@@ -76,7 +78,7 @@ class GoalsController < ApplicationController
   # DELETE /goals/1
   # DELETE /goals/1.json
   def destroy
-    @goal = Goal.find(params[:id])
+    @goal = current_user.goals.find(params[:id])
     @goal.destroy
 
     respond_to do |format|
