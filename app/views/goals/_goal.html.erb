@@ -1,6 +1,8 @@
 <tr id="goal_<%= goal.id %>">
-  <td><%= image_tag goal.image_url(:thumb) if goal.image? %></td>
-  <td><%= goal.name %> <%= goal.amount %> <%= goal.due_date %></td>
+  <td><%= image_tag goal.image_url(:thumb_mini) if goal.image? %></td>
+  <td><%= goal.name %></td>
+  <td><%= number_to_currency goal.amount %></td>
+  <td><%= goal.due_date.strftime('%d-%m-%Y') %> (<%= days_left goal.due_date %>)</td>
   <td class="actions">
     <a href="<%= edit_goal_path(goal, layout: 'false') %>" class="btn btn-small btn-info" data-toggle="modal" data-target="#goal-ctn"><i class="icon-pencil"></i></a>
     <a href="<%= goal_path(goal, layout: 'false') %>" data-remote="true" data-method="delete" data-confirm="Are you sure?" class="btn btn-small btn-danger"><i class="icon-trash"></i></a>
