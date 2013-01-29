@@ -1,5 +1,5 @@
 <tr id="goal_<%= goal.id %>">
-  <td><%= image_tag goal.image_url(:thumb_mini) if goal.image? %></td>
+  <td><%= image_tag goal.image_url(:thumb_mini), class: 'goal_thumbnail_mini' if goal.image? %></td>
   <td><%= goal.name %></td>
   <td><%= number_to_currency goal.amount %></td>
   <td><%= goal.due_date.strftime('%d-%m-%Y') %> (<%= days_left goal.due_date %>)</td>
